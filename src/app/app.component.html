@@ -1,25 +1,18 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" #menu role="navigation">Sidenav content</mat-sidenav>
+  <mat-sidenav mode="side" #menu role="navigation">
+    Sidenav content
+  </mat-sidenav>
   <mat-sidenav-content>
-    <button (click)="menu.toggle()">Menu</button>
-    <app-usuario></app-usuario>
-    <button mat-raised-button color="primary" routerLink="/"> Inicio <span class="material-icons">&#xe88a;</span> </button>
-    <br><mat-icon> account_circle </mat-icon>
-    <button mat-raised-button color="warn" routerLink="/libros"> Libros <span class="material-icons">&#xe865;</span>
-    </button>
-    <br>
-    <button mat-raised-button color="primary" routerLink="/registrar"> Registrar <span
-        class="material-icons">&#xe865;</span>
-    </button>
-    <br>
-    <button mat-raised-button color="warn" routerLink="/login"> Login <span class="material-icons">&#xe865;</span>
-    </button>
-    <router-outlet></router-outlet>
+
+    <mat-toolbar color="primary">
+      <button mat-icon-button>
+        <mat-icon class="mat-18">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
-</mat-drawer-container>
-

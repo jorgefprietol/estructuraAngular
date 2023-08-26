@@ -5,3 +5,16 @@
 <div *ngFor="let item of usuarios">
   {{ item }}
 </div>
+    <app-usuario></app-usuario>
+    <button mat-raised-button color="primary" routerLink="/"> Inicio <span class="material-icons">&#xe88a;</span> </button>
+    <br><mat-icon> account_circle </mat-icon>
+    <button mat-raised-button color="warn" routerLink="/libros"> Libros <span class="material-icons">&#xe865;</span>
+    </button>
+    <br>
+    <button mat-raised-button color="primary" routerLink="/registrar"> Registrar <span
+        class="material-icons">&#xe865;</span>
+    </button>
+    <br>
+    <button mat-raised-button color="warn" routerLink="/login"> Login <span class="material-icons">&#xe865;</span>
+    </button>
+    <router-outlet></router-outlet>
