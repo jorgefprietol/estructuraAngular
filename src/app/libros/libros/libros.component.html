@@ -1,0 +1,9 @@
+<p>libros works!</p>
+<form (ngSubmit)="guardarLibro(f)" #f="ngForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre del Libro</mat-label>
+      <input  type="text" name="libroNombre" ngModel required matInput placeholder="Ejemplo: Ingles" value="Sushi">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="warn"> Agregar <span class="material-icons">&#xe865;</span></button>
+</form>
+<app-libro (libroClicked)="eliminarLibro(libro)" *ngFor="let libro of libros" [tituloLibro]="libro"></app-libro>
