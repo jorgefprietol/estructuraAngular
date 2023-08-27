@@ -1,13 +1,17 @@
-<section>
-  <form>
-    <mat-form-field>
-      <mat-label>Ingrese E-Mail</mat-label>
-      <input type="email" matInput placeholder="jorge@gmail.com">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Ingrese Password</mat-label>
-      <input type="password" matInput placeholder="Ingrese Password">
-    </mat-form-field>
-  </form>
+<section fxLayoutAlign="center">
+  <mat-card>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-form-field>
+        <mat-label>Ingrese E-Mail</mat-label>
+        <input type="email" matInput placeholder="jorge@gmail.com">
+        <mat-error>Debe ingresar un E-mail</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ingrese Password</mat-label>
+        <input type="password" matInput placeholder="Ingrese Password">
+        <mat-error>Debe ingresar un Password</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Enviar</button>
+    </form>
+  </mat-card>
 </section>
