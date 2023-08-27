@@ -22,6 +22,11 @@ a:active{
   margin: 0;
 }
 
+.navegacion-list-label{
+  display: inline-block;
+  padding-left: 6px;
+}
+
 section {
   display: table;
 }
