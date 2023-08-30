@@ -4,6 +4,8 @@ import { Books } from './books.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { BooksNuevoComponent } from './books-nuevo.component';
 
 @Component({
   selector: 'app-books',
@@ -17,10 +19,14 @@ export class BooksComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Books>();
   @ViewChild(MatSort) ordenamiento: MatSort;
   @ViewChild(MatPaginator) paginacion: MatPaginator;
-  constructor(private booksService: BooksService) { }
+  constructor(private booksService: BooksService, private dialog: MatDialog) { }
 
   hacerFiltro(filtro: string) {
     this.dataSource.filter = filtro;
+  }
+
+  abrirDialog() {
+    this.dialog.open(BooksNuevoComponent);
   }
 
   ngOnInit(): void {

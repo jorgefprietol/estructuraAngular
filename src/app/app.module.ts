@@ -20,6 +20,7 @@ import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component
 import { SeguridadService } from './seguridad/seguridad.service';
 import { BooksComponent } from './books/books.component';
 import { BooksService } from './books/books.services';
+import { BooksNuevoComponent } from './books/books-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BooksService } from './books/books.services';
     LoginComponent,
     BarraComponent,
     MenuListaComponent,
-    BooksComponent
+    BooksComponent,
+    BooksNuevoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { BooksService } from './books/books.services';
     FlexLayoutModule
   ],
   providers: [LibrosService, SeguridadService, BooksService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BooksNuevoComponent]
 })
 export class AppModule { }
