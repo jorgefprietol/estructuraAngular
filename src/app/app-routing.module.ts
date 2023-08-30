@@ -7,13 +7,15 @@ import { LoginComponent } from './seguridad/login/login.component';
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { UsuarioComponent } from './usuario.component';
 import { SeguridadRouter } from './seguridad/seguridad.router';
+import { BooksComponent } from './books/books.component';
 
 const routes: Routes = [
   { path:'', component: InicioComponent, canActivate: [SeguridadRouter]},
   { path: 'libros', component: LibrosComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: RegistrarComponent },
-  { path:'usuario', component: UsuarioComponent}
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'books', component: BooksComponent },
 ];
 
 @NgModule({
