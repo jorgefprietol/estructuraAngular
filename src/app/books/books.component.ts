@@ -17,12 +17,17 @@ export class BooksComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) ordenamiento: MatSort;
   constructor(private booksService: BooksService) { }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.ordenamiento;
+  hacerFiltro(filtro: string) {
+    this.dataSource.filter = filtro;
   }
 
   ngOnInit(): void {
     //this.booksData = this.booksService.obtenerLibros();
     this.dataSource.data = this.booksService.obtenerLibros();
   }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.ordenamiento;
+  }
+
 }
