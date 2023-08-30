@@ -1,18 +1,18 @@
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="titulo">
-    <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="descripcion">
-    <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="autor">
-    <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Autor </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.autor}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="precio">
-    <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
     <mat-cell *matCellDef="let element">${{element.precio}} </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
