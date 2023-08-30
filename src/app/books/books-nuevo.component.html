@@ -1,0 +1,54 @@
+<h2 matDialogTitle>Agregar Nuevo Libro</h2>
+
+<mat-dialog-content>
+    <section fxLayoutAlign="center" style="margin-top: 10px; margin-bottom: 10px;">
+      <mat-card fxFlex="100%">
+        <form
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          #f="ngForm"
+          (ngSubmit)="guardarLibro()"
+          >
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Titulo</mat-label>
+            <input matInput type="text" placeholder="ejem. Libro Galaxias" name="titulo" ngModel required >
+            <mat-error>Debe ingresar el titulo del libro</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+          <mat-label>Ingrese Descripción</mat-label>
+            <input matInput type="text" placeholder="ejem. Libro creado en 1983" name="descripcion" ngModel required>
+            <mat-error>Debe ingresar la descripción del libro</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Seleccione Autor</mat-label>
+              <mat-select [(ngModel)]="selectAutor" name="autor">
+                <mat-option value="1">
+                  Jorge Prieto
+                </mat-option>
+                <mat-option value="2">
+                  Fidel Linares
+                </mat-option>
+                <mat-option value="3">
+                  Jose Perez
+                </mat-option>
+                <mat-option value="4">
+                  Maria Cuevas
+                </mat-option>
+              </mat-select>
+            <mat-error>Debe ingresar el autor del libro</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Ingrese Precio</mat-label>
+            <input matInput type="number" placeholder="ejem. 20" name="precio" ngModel required>
+            <mat-error>Debe ingresar el precio del libro</mat-error>
+          </mat-form-field>
+        </form>
+      </mat-card>
+    </section>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Cerrar</button>
+    <button mat-button>Guardar</button>
+</mat-dialog-actions>
