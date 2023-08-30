@@ -6,9 +6,10 @@ import { LibrosComponent } from './libros/libros/libros.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { UsuarioComponent } from './usuario.component';
+import { SeguridadRouter } from './seguridad/seguridad.router';
 
 const routes: Routes = [
-  { path:'', component: InicioComponent},
+  { path:'', component: InicioComponent, canActivate: [SeguridadRouter]},
   { path: 'libros', component: LibrosComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: RegistrarComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [SeguridadRouter]
 })
 export class AppRoutingModule { }
