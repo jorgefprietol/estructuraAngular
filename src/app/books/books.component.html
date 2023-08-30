@@ -2,7 +2,6 @@
   <mat-form-field fxFlex="60%">
     <input matInput type="text" (keyup)="hacerFiltro($event.target.value)" placeholder="Ingrese texto a Buscar">
   </mat-form-field>
-
 </div>
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="titulo">
@@ -24,3 +23,6 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+<mat-paginator [pageSize]="1" [pageSizeOptions]="[1,3,5]">
+
+</mat-paginator>
