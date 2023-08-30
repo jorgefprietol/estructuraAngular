@@ -1,4 +1,4 @@
-import { Books } from "./books.model";
+import { Books } from './books.model';
 
 export class BooksService{
   booksList: Books[] = [
@@ -7,4 +7,8 @@ export class BooksService{
     { 'libroId': 3, 'titulo': 'ASP.NET', 'descripcion': 'Master', 'autor': 'Pepe Lopez', 'precio': 30 },
     { 'libroId': 4, 'titulo': 'Java', 'descripcion': 'Agile Libro','autor': 'Jorge Linares','precio': 99}
   ];
+
+  obtenerLibros() {
+    return this.booksList.slice();
+  }
 }
