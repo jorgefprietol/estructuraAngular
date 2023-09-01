@@ -19,7 +19,14 @@ export class BooksNuevoComponent{
   constructor(private booksService: BooksService){}
 
   guardarLibro(form: NgForm) {
-
+    this.booksService.guardarLibro({
+      libroId: 1,
+      descripcion: form.value.descripcion,
+      titulo: form.value.titulo,
+      autor: this.selectAutorTexto,
+      precio: form.value.precio,
+      fechaPublicacion: new Date(this.fechaPublicacion)
+    });
   }
 
   selected(event: MatSelectChange) {
