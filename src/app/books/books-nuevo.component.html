@@ -20,17 +20,8 @@
           <mat-form-field style="width: 100%;">
             <mat-label>Seleccione Autor</mat-label>
             <mat-select [(ngModel)]="selectAutor" name="autor" (selectionChange)="selected($event)">
-              <mat-option value="1">
-                Jorge Prieto
-              </mat-option>
-              <mat-option value="2">
-                Fidel Linares
-              </mat-option>
-              <mat-option value="3">
-                Jose Perez
-              </mat-option>
-              <mat-option value="4">
-                Maria Cuevas
+              <mat-option *ngFor="let aut of autores" value="aut.autorId">
+                {{ aut.nombre + ' ' + aut.apellido }}
               </mat-option>
             </mat-select>
             <mat-error>Debe ingresar el autor del libro</mat-error>
