@@ -4,6 +4,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { BooksService } from './books.services';
 import { MatSelectChange } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-book-nuevo',
@@ -16,17 +17,21 @@ export class BooksNuevoComponent{
   fechaPublicacion: string;
   @ViewChild(MatDatepicker) picker: MatDatepicker<Date>;
 
-  constructor(private booksService: BooksService){}
+  constructor(private booksService: BooksService, private dialogRef: MatDialog){}
 
   guardarLibro(form: NgForm) {
-    this.booksService.guardarLibro({
-      libroId: 1,
-      descripcion: form.value.descripcion,
-      titulo: form.value.titulo,
-      autor: this.selectAutorTexto,
-      precio: form.value.precio,
-      fechaPublicacion: new Date(this.fechaPublicacion)
-    });
+    if (form.valid) {
+      this.booksService.guardarLibro({
+        libroId: 1,
+        descripcion: form.value.descripcion,
+        titulo: form.value.titulo,
+        autor: this.selectAutorTexto,
+        precio: form.value.precio,
+        fechaPublicacion: new Date(this.fechaPublicacion)
+      });
+      this.dialogRef.closeAll();
+    }
+
   }
 
   selected(event: MatSelectChange) {
