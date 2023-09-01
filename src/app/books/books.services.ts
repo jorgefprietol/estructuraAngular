@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { Books } from './books.model';
 
 export class BooksService{
@@ -8,7 +9,14 @@ export class BooksService{
     { 'libroId': 4, 'titulo': 'Java', 'descripcion': 'Agile Libro','autor': 'Jorge Linares','precio': 99}
   ];
 
+  bookSubject = new Subject<Books>();
+
   obtenerLibros() {
     return this.booksList.slice();
+  }
+
+  guardarLibro(book: Books) {
+    this.booksList.push(book);
+    this.bookSubject.next(book);
   }
 }

@@ -8,7 +8,7 @@
           fxLayoutAlign="center center"
           fxLayoutGap="10px"
           #f="ngForm"
-          (ngSubmit)="guardarLibro()"
+          (ngSubmit)="guardarLibro(f)"
           >
           <mat-form-field style="width: 100%;">
             <mat-label>Ingrese Titulo</mat-label>
@@ -22,7 +22,7 @@
           </mat-form-field>
           <mat-form-field style="width: 100%;">
             <mat-label>Seleccione Autor</mat-label>
-              <mat-select [(ngModel)]="selectAutor" name="autor">
+              <mat-select [(ngModel)]="selectAutor" name="autor" (selectionChange)="selected($event)">
                 <mat-option value="1">
                   Jorge Prieto
                 </mat-option>
@@ -42,6 +42,11 @@
             <mat-label>Ingrese Precio</mat-label>
             <input matInput type="number" placeholder="ejem. 20" name="precio" ngModel required>
             <mat-error>Debe ingresar el precio del libro</mat-error>
+          </mat-form-field>
+          <mat-form-field style="width: 100%;">
+            <input matInput placeholder="Seleccione Fecha Publicación" [matDatepicker]="picker" name="fechaPublicacion" [(ngModel)]="fechaPublicacion">
+            <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
           </mat-form-field>
         </form>
       </mat-card>
