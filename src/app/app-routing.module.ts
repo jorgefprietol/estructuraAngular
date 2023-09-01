@@ -8,6 +8,7 @@ import { RegistrarComponent } from './seguridad/registrar/registrar.component';
 import { UsuarioComponent } from './usuario.component';
 import { SeguridadRouter } from './seguridad/seguridad.router';
 import { BooksComponent } from './books/books.component';
+import { AutoresComponent } from './autores/autores.component';
 
 const routes: Routes = [
   { path:'', component: InicioComponent, canActivate: [SeguridadRouter]},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'registrar', component: RegistrarComponent },
   { path: 'usuario', component: UsuarioComponent },
   { path: 'books', component: BooksComponent },
+  { path: 'autores', component: AutoresComponent },
 ];
 
 @NgModule({
