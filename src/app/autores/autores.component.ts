@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Autor } from './autor.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { AutoresService } from './autores.services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-autores',
   templateUrl: './autores.component.html',
   styleUrls: ['./autores.component.css']
 })
-export class AutoresComponent implements OnInit {
+export class AutoresComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['nombre', 'apellido', 'gradoAcademico'];
   dataSource = new MatTableDataSource<Autor>();
+  private autorSubscription: Subscription;
   constructor(private autoresService: AutoresService) { }
+  ngOnDestroy(): void {
+    this.autorSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.autoresService.obtenerAutores();
