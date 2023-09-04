@@ -14,7 +14,12 @@ export class AutoresComponent implements OnInit {
   constructor(private autoresService: AutoresService) { }
 
   ngOnInit(): void {
-    this.dataSource.data = this.autoresService.obtenerAutores();
+    this.autoresService.obtenerAutores();
+    this.autoresService.obtenerActualListener()
+      .subscribe((autores: Autor[]) => {
+        this.dataSource.data = autores;
+      });
+    //this.dataSource.data = this.autoresService.obtenerAutores();
   }
 
 }

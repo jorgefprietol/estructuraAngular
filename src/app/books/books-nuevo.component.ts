@@ -22,7 +22,7 @@ export class BooksNuevoComponent implements OnInit{
 
   constructor(private booksService: BooksService, private dialogRef: MatDialog, private autoresService: AutoresService){}
   ngOnInit(): void {
-    this.autores = this.autoresService.obtenerAutores();
+    //this.autores = this.autoresService.obtenerAutores();
   }
 
   guardarLibro(form: NgForm) {
