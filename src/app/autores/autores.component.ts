@@ -14,17 +14,18 @@ export class AutoresComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Autor>();
   private autorSubscription: Subscription;
   constructor(private autoresService: AutoresService) { }
-  ngOnDestroy(): void {
-    this.autorSubscription.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.autoresService.obtenerAutores();
-    this.autoresService.obtenerActualListener()
+    this.autorSubscription = this.autoresService.obtenerActualListener()
       .subscribe((autores: Autor[]) => {
         this.dataSource.data = autores;
       });
     //this.dataSource.data = this.autoresService.obtenerAutores();
+  }
+
+  ngOnDestroy(): void {
+    this.autorSubscription.unsubscribe();
   }
 
 }

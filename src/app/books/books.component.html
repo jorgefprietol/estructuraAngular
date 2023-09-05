@@ -23,7 +23,8 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<mat-paginator [pageSize]="1" [pageSizeOptions]="[1,3,5]">
+<mat-paginator
+  (page)="eventoPaginador($event)" #paginacion [pageSize]="librosPorPagina" [pageSizeOptions]="paginaCombo" [length]="totalLibros">
 </mat-paginator>
 <button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()">
   <mat-icon>add</mat-icon>
