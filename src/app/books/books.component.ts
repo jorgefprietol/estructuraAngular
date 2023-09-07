@@ -29,6 +29,7 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
   sort = 'titulo';
   sortDirection = 'asc';
   filterValue = null;
+  timeOut: any = null;
   constructor(private booksService: BooksService, private dialog: MatDialog) { }
 
   ngOnDestroy(): void {
@@ -38,17 +39,17 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
 /*   hacerFiltro(filtro: string) {
     this.dataSource.filter = filtro;
   } */
-  timeOut: any = null;
-  hacerFiltro(filtro: any) {
+
+  hacerFiltro(filtro: any): void {
     clearTimeout(this.timeOut);
-    var $this = this;
-    console.log("paso");
-    this.timeOut = setTimeout(function () {
+    const $this = this;
+    this.timeOut = setTimeout(() => {
       if (filtro.keyCode != 13) {
         const filterValueLocal = {
           propiedad: 'titulo',
           valor: filtro.target.value
         };
+        $this.filterValue = filterValueLocal;
         $this.booksService.obtenerLibrosFilter
           (
             $this.librosPorPagina,
@@ -59,7 +60,7 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
           );
       }
     }, 1000);
-    this.dataSource.filter = filtro;
+    //this.dataSource.filter = filtro;
   }
 
   abrirDialog() {
@@ -106,7 +107,7 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.paginator = this.paginacion;
   }
 
-  eventoPaginador(event: PageEvent) {
+  eventoPaginador(event: PageEvent): void {
     this.librosPorPagina = event.pageSize;
     this.paginaActual = event.pageIndex + 1;
     this.booksService.obtenerLibros(
@@ -118,7 +119,7 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ordenarColumna(event) {
+  ordenarColumna(event): void {
     this.sort = event.active;
     this.sortDirection = event.direction;
     this.booksService.obtenerLibros(
