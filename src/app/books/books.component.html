@@ -3,7 +3,7 @@
     <input matInput type="text" (keyup)="hacerFiltro($event.target.value)" placeholder="Ingrese texto a Buscar">
   </mat-form-field>
 </div>
-<mat-table [dataSource]="dataSource" matSort>
+<mat-table [dataSource]="dataSource" matSort (matSortChange)="ordenarColumna($event)">
   <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
@@ -14,7 +14,7 @@
   </ng-container>
   <ng-container matColumnDef="autor">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Autor </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.autor}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.autor.nombreCompleto}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="precio">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>

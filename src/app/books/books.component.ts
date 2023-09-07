@@ -40,9 +40,20 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   abrirDialog() {
-    this.dialog.open(BooksNuevoComponent, {
-      width: '450px'
+    const dialogRef = this.dialog.open(BooksNuevoComponent, {
+      width: '550px'
     });
+
+    dialogRef.afterClosed()
+      .subscribe(() => {
+        this.booksService.obtenerLibros(
+          this.librosPorPagina,
+          this.paginaActual,
+          this.sort,
+          this.sortDirection,
+          this.filterValue
+        );
+      })
   }
 
   ngOnInit(): void {
@@ -63,7 +74,6 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe((pagination: PaginationBooks) => {
           this.dataSource = new MatTableDataSource<Books>(pagination.data);
           this.totalLibros = pagination.totalRows;
-          console.log("totalLibros:", pagination);
         });
 
   }
@@ -81,6 +91,18 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
       this.paginaActual,
       this.sort,
       this.sortDirection,
+      this.filterValue
+    );
+  }
+
+  ordenarColumna(event) {
+    this.sort = event.active;
+    this.sortDirection = event.direction;
+    this.booksService.obtenerLibros(
+      this.librosPorPagina,
+      this.paginaActual,
+      event.active,
+      event.direction,
       this.filterValue
     );
   }
