@@ -39,6 +39,21 @@ export class BooksService{
         this.bookPaginationSubject.next(this.bookPagination);
       });
   }
+    obtenerLibrosFilter(libroPorPagina: number, paginaActual: number, sort: string, sortDirection: string, filterValue: any) {
+    //return this.booksList.slice();
+    const request = {
+      pageSize: libroPorPagina,
+      page: paginaActual,
+      sort,
+      sortDirection,
+      filterValue
+    };
+    this.http.post<PaginationBooks>(this.baseUrl + 'api/Libro/paginationFilter', request)
+      .subscribe((response) => {
+        this.bookPagination = response;
+        this.bookPaginationSubject.next(this.bookPagination);
+      });
+  }
 
   obtenerActualListener() {
     return this.bookPaginationSubject.asObservable();

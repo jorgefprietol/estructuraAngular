@@ -35,7 +35,30 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
     this.bookSubscription.unsubscribe();
   }
 
-  hacerFiltro(filtro: string) {
+/*   hacerFiltro(filtro: string) {
+    this.dataSource.filter = filtro;
+  } */
+  timeOut: any = null;
+  hacerFiltro(filtro: any) {
+    clearTimeout(this.timeOut);
+    var $this = this;
+    console.log("paso");
+    this.timeOut = setTimeout(function () {
+      if (filtro.keyCode != 13) {
+        const filterValueLocal = {
+          propiedad: 'titulo',
+          valor: filtro.target.value
+        };
+        $this.booksService.obtenerLibrosFilter
+          (
+            $this.librosPorPagina,
+            $this.paginaActual,
+            $this.sort,
+            $this.sortDirection,
+            filterValueLocal
+          );
+      }
+    }, 1000);
     this.dataSource.filter = filtro;
   }
 
