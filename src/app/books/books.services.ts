@@ -33,7 +33,7 @@ export class BooksService{
       sortDirection,
       filterValue
     };
-    this.http.post<PaginationBooks>(this.baseUrl + 'api/Libro/Pagination', request)
+    this.http.post<PaginationBooks>(this.baseUrl + 'libro/pagination', request)
       .subscribe((response) => {
         this.bookPagination = response;
         this.bookPaginationSubject.next(this.bookPagination);
@@ -48,20 +48,20 @@ export class BooksService{
       sortDirection,
       filterValue
     };
-    this.http.post<PaginationBooks>(this.baseUrl + 'api/Libro/paginationFilter', request)
+    this.http.post<PaginationBooks>(this.baseUrl + 'libro/paginationFilter', request)
       .subscribe((response) => {
         this.bookPagination = response;
         this.bookPaginationSubject.next(this.bookPagination);
       });
   }
 
-  obtenerActualListener() {
+  obtenerActualListener(): any {
     return this.bookPaginationSubject.asObservable();
   }
 
-  guardarLibro(book: Books) {
+  guardarLibro(book: Books): void {
     //this.booksList.push(book);
-    this.http.post(this.baseUrl + 'api/Libro', book)
+    this.http.post(this.baseUrl + '/libro', book)
       .subscribe((response) => {
       this.bookSubject.next();
       });
