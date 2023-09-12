@@ -12,12 +12,12 @@ import { AutoresComponent } from './autores/autores.component';
 
 const routes: Routes = [
   { path:'', component: InicioComponent, canActivate: [SeguridadRouter]},
-  { path: 'libros', component: LibrosComponent },
+  { path: 'libros', component: LibrosComponent, canActivate: [SeguridadRouter] },
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: RegistrarComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'books', component: BooksComponent },
-  { path: 'autores', component: AutoresComponent },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [SeguridadRouter] },
+  { path: 'books', component: BooksComponent, canActivate: [SeguridadRouter] },
+  { path: 'autores', component: AutoresComponent, canActivate: [SeguridadRouter] },
 ];
 
 @NgModule({
