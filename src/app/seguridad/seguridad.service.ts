@@ -12,9 +12,13 @@ import { HttpClient } from '@angular/common/http';
   })
 export class SeguridadService{
   baseUrl = environment.baseUrl;
-
+  private token: string;
   private usuario: Usuario;
   segurdiadCambio = new Subject<boolean>();
+
+  obtenerToken(): string {
+    return this.token;
+  }
 
   constructor(private router: Router, private http: HttpClient) {
 
@@ -27,14 +31,15 @@ export class SeguridadService{
       usuarioId: Math.round(Math.random() * 10000).toString(),
       nombre: usr.nombre,
       apellidos: usr.apellidos,
-      username: usr.username
+       username: usr.username,
+      token: usr.token,
     };
     this.segurdiadCambio.next(true);
     this.router.navigate(['/']);
 
   }
 
-  login(loginData: LoginData) {
+  login(loginData: LoginData): void {
 
 /*     this.usuario = {
       email: loginData.email,
@@ -46,9 +51,21 @@ export class SeguridadService{
     };
     this.segurdiadCambio.next(true);
     this.router.navigate(['/']); */
-    this.http.post(this.baseUrl + 'usuario/login', loginData)
+    this.http.post<Usuario>(this.baseUrl + 'usuario/login', loginData)
      .subscribe((response) => {
-      console.log('login respuesta', response);
+       console.log('login respuesta', response);
+       this.token = response.token;
+       this.usuario = {
+         email: response.email,
+         nombre: response.nombre,
+         apellidos: response.apellidos,
+         token: response.token,
+         password: '',
+         username: response.username,
+         usuarioId: response.usuarioId
+       };
+      this.segurdiadCambio.next(true);
+      this.router.navigate(['/']);
     });
   }
 
