@@ -31,7 +31,7 @@ export class SeguridadService{
        this.usuario = {
          email: response.email,
          nombre: response.nombre,
-         apellidos: response.apellidos,
+         apellido: response.apellido,
          token: response.token,
          password: '',
          username: response.username,
@@ -50,8 +50,8 @@ export class SeguridadService{
 
   }
 
-  registrarUsuario(usr: Usuario) {
-     this.usuario = {
+  registrarUsuario(usr: Usuario): void {
+/*      this.usuario = {
       email: usr.email,
       password: usr.password,
       usuarioId: Math.round(Math.random() * 10000).toString(),
@@ -61,8 +61,23 @@ export class SeguridadService{
       token: usr.token,
     };
     this.segurdiadCambio.next(true);
-    this.router.navigate(['/']);
-
+    this.router.navigate(['/']); */
+    this.http.post<Usuario>(this.baseUrl + 'usuario/registrar', usr)
+     .subscribe((response) => {
+       this.token = response.token;
+       this.usuario = {
+         email: response.email,
+         nombre: response.nombre,
+         apellido: response.apellido,
+         token: response.token,
+         password: '',
+         username: response.username,
+         usuarioId: response.usuarioId
+       };
+       this.segurdiadCambio.next(true);
+       localStorage.setItem('token', response.token);
+      this.router.navigate(['/']);
+    });
   }
 
   login(loginData: LoginData): void {
@@ -84,7 +99,7 @@ export class SeguridadService{
        this.usuario = {
          email: response.email,
          nombre: response.nombre,
-         apellidos: response.apellidos,
+         apellido: response.apellido,
          token: response.token,
          password: '',
          username: response.username,
